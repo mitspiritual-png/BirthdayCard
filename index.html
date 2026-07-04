@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishing Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cinzel:wght@700;800&family=Cormorant+Garamond:wght@500;700&family=Crimson+Text:wght@600;700&family=DM+Sans:wght@500;700;800&family=EB+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Lato:wght@700;900&family=Libre+Baskerville:wght@700&family=Lora:wght@500;700&family=Merriweather:wght@700;900&family=Montserrat:wght@600;700;800&family=Nunito+Sans:wght@700;800&family=Open+Sans:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700;800&family=Poppins:wght@500;700;800&family=Raleway:wght@700;800&family=Roboto+Slab:wght@700;800&family=Source+Serif+4:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="workspace">
+    <section class="panel editor-panel" aria-label="Birthday card editor">
+      <div class="brand-row">
+        <div>
+          <p class="eyebrow">Wishing Card</p>
+        </div>
+        <button class="icon-button" id="adminToggle" type="button" title="Admin login" aria-label="Admin login">
+          <span>Admin</span>
+        </button>
+      </div>
+
+      <details class="tool-section" open>
+        <summary>User Options</summary>
+        <div class="section-body">
+          <div class="quick-options" aria-label="Main card options">
+            <label class="upload-tile">
+              <input id="personUpload" type="file" accept="image/*">
+              <span>Photo</span>
+              <strong>Upload face image</strong>
+            </label>
+          </div>
+
+          <div class="controls-grid">
+            <label>
+              Name
+              <input id="nameInput" type="text" value="Aarav" maxlength="24" aria-label="Birthday person name">
+            </label>
+            <label>
+              Message
+              <input id="messageInput" type="text" value="Wishing you a day full of joy, love, and bright moments." maxlength="72" aria-label="Birthday message">
+            </label>
+            <label>
+              Photo Shape
+              <select id="shapeInput" aria-label="Photo shape">
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+              </select>
+            </label>
+            <label>
+              Template
+              <select id="templateInput" aria-label="Card template"></select>
+            </label>
+            <label>
+              Font
+              <select id="fontInput" aria-label="Card font">
+                <option value="Inter">Inter</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="DM Sans">DM Sans</option>
+                <option value="Lato">Lato</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Nunito Sans">Nunito Sans</option>
+                <option value="Raleway">Raleway</option>
+                <option value="Oswald">Oswald</option>
+                <option value="Playfair Display">Playfair Display</option>
+                <option value="Lora">Lora</option>
+                <option value="Merriweather">Merriweather</option>
+                <option value="Libre Baskerville">Libre Baskerville</option>
+                <option value="Cormorant Garamond">Cormorant Garamond</option>
+                <option value="EB Garamond">EB Garamond</option>
+                <option value="Crimson Text">Crimson Text</option>
+                <option value="Source Serif 4">Source Serif 4</option>
+                <option value="Roboto Slab">Roboto Slab</option>
+                <option value="Cinzel">Cinzel</option>
+                <option value="Abril Fatface">Abril Fatface</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="sliders" aria-label="Photo adjustment">
+            <label>
+              Crop Scale
+              <input id="zoomInput" type="range" min="1" max="3.2" value="1.15" step="0.01">
+            </label>
+            <label>
+              Crop Left / Right
+              <input id="xInput" type="range" min="-260" max="260" value="0" step="1">
+            </label>
+            <label>
+              Crop Up / Down
+              <input id="yInput" type="range" min="-260" max="260" value="0" step="1">
+            </label>
+          </div>
+        </div>
+      </details>
+
+      <button class="download-button" id="downloadCard" type="button">Download Card</button>
+
+      <form class="admin-box" id="adminBox" aria-label="Admin card upload">
+        <details class="tool-section admin-section" open>
+          <summary>Admin Options</summary>
+          <div class="section-body">
+            <div class="admin-head">
+              <div>
+                <p class="eyebrow">Admin</p>
+                <h2>Upload card templates</h2>
+              </div>
+              <button class="text-button" id="logoutButton" type="button">Logout</button>
+            </div>
+        <div class="login-fields" id="loginFields">
+          <input id="adminId" type="text" placeholder="Admin ID" autocomplete="username">
+          <input id="adminPass" type="password" placeholder="Password" autocomplete="current-password">
+          <button class="dark-button" id="loginButton" type="button">Login</button>
+        </div>
+        <div class="admin-upload" id="adminUpload">
+          <input id="templateName" type="text" placeholder="Template name">
+          <label class="upload-tile compact">
+            <input id="templateUpload" type="file" accept="image/*">
+            <strong>Upload template image</strong>
+          </label>
+          <label>
+            Select Element
+            <select id="selectedElement">
+              <option value="photo">Photo</option>
+              <option value="title">Birthday Title</option>
+              <option value="name">Person Name</option>
+              <option value="message">Message</option>
+            </select>
+          </label>
+          <div class="admin-layout">
+            <fieldset data-element-group="photo">
+              <legend>Photo</legend>
+              <label>Left / Right <input id="layoutPhotoX" data-layout="photoX" type="range" min="0" max="1080" value="540" step="1"></label>
+              <label>Up / Down <input id="layoutPhotoY" data-layout="photoY" type="range" min="0" max="1350" value="250" step="1"></label>
+              <label>Scale <input id="layoutPhotoSize" data-layout="photoSize" type="range" min="40" max="900" value="420" step="1"></label>
+            </fieldset>
+            <fieldset data-element-group="name">
+              <legend>Person Name</legend>
+              <label>Left / Right <input id="layoutNameX" data-layout="nameX" type="range" min="0" max="1080" value="540" step="1"></label>
+              <label>Up / Down <input id="layoutNameY" data-layout="nameY" type="range" min="0" max="1350" value="925" step="1"></label>
+              <label>Scale <input id="layoutNameSize" data-layout="nameSize" type="range" min="20" max="220" value="116" step="1"></label>
+            </fieldset>
+            <fieldset data-element-group="title">
+              <legend>Birthday Title</legend>
+              <label>Left / Right <input id="layoutTitleX" data-layout="titleX" type="range" min="0" max="1080" value="540" step="1"></label>
+              <label>Up / Down <input id="layoutTitleY" data-layout="titleY" type="range" min="0" max="1350" value="800" step="1"></label>
+              <label>Scale <input id="layoutTitleSize" data-layout="titleSize" type="range" min="14" max="160" value="58" step="1"></label>
+            </fieldset>
+            <fieldset data-element-group="message">
+              <legend>Message</legend>
+              <label>Left / Right <input id="layoutMessageX" data-layout="messageX" type="range" min="0" max="1080" value="540" step="1"></label>
+              <label>Up / Down <input id="layoutMessageY" data-layout="messageY" type="range" min="0" max="1350" value="1010" step="1"></label>
+              <label>Scale <input id="layoutMessageSize" data-layout="messageSize" type="range" min="12" max="90" value="34" step="1"></label>
+            </fieldset>
+          </div>
+          <button class="dark-button" id="saveLayoutButton" type="button">Save Layout</button>
+          <div class="template-list" id="templateList" aria-label="Saved admin templates"></div>
+          <p id="adminStatus" role="status"></p>
+        </div>
+          </div>
+        </details>
+      </form>
+    </section>
+
+    <section class="preview-panel" aria-label="Card preview">
+      <div class="card-frame">
+        <canvas id="cardCanvas" width="1080" height="1350" aria-label="Generated birthday card preview"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="downloadDialog" class="download-dialog">
+    <form method="dialog">
+      <h2>Download card?</h2>
+      <p>Your current card will be saved as a PNG image.</p>
+      <div class="dialog-actions">
+        <button class="text-button" value="cancel" type="submit">Cancel</button>
+        <button class="dark-button" id="confirmDownload" value="download" type="button">Download Card</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
